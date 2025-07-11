@@ -21,8 +21,8 @@ function ProceedToCheckout() {
 
   return (
     <div className="checkout-container">
-      <p>Total: {total.toFixed(2)}</p>
-      <p>Budget: {budget}</p>
+      <p>Total: ${total.toFixed(2)}</p>
+      <p>Budget: ${budget}</p>
       <button disabled={total === 0}>Proceed to Checkout</button>
       <button disabled={!overBudget}>Suggestions</button>
     </div>

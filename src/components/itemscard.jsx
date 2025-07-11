@@ -9,7 +9,7 @@ function ItemsCard({ item }) {
       </div>
       <div className="item-details">
         <h3>{item.title}</h3>
-        <p>Price: {item.price}</p>
+        <p>Price: ${item.price}</p>
       </div>
       <div className="item-actions">
         <button className="add-to-cart" onClick={() => addToCart(item)}>

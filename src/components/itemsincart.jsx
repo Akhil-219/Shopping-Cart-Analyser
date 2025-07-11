@@ -15,7 +15,7 @@ function CartItems({ item }) {
       </div>
       <div className="cart-item-details">
         <h3>{item.title}</h3>
-        <p>Price: {item.price}</p>
+        <p>Price: ${item.price}</p>
       </div>
       <button onClick={decrement} className="quantity-button">-</button>
       <p>{item.quantity}</p>
