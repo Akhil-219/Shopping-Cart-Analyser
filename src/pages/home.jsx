@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import "../css/Cart.css";
 import "../css/home.css";
 import { getAllItems, searchItems } from "../services/api";
+import { useBudgetContext } from "../contexts/BudgetContext";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {budget,setBudget}=useBudgetContext();
+
   useEffect(() => {
     const loadItems = async () => {
       try {
@@ -41,7 +44,15 @@ function Home() {
     }
   };
 
-  const handleBudget = (e) => {};
+  const handleBudget = (e) => {
+    e.preventDefault();
+    if(!budget || budget<=0){
+        alert("Budget must be greater than zero")
+    }
+    else{
+        alert(`budget set to ${budget}`)
+    }
+  };
   return (
     <div className="home-page">
       <form onSubmit={handleSearch} className="search-bar">
@@ -56,16 +67,18 @@ function Home() {
           Search
         </button>
       </form>
-      <form onSubmit={handleBudget} className="budget-info">
+      <div className="budget-info">
         <input
           type="number"
           placeholder="Enter your budget...."
           className="enter-input"
+          value={budget}
+          onChange={(e)=>setBudget(e.target.value)}
         ></input>
-        <button type="submit" className="enter-button">
+        <button type="submit" className="enter-button" onClick={handleBudget}>
           Enter
         </button>
-      </form>
+      </div>
       {error && <div className="error-message">{error}</div>}
 
       {loading ? (
@@ -73,7 +86,7 @@ function Home() {
       ) : (
         <div className="items-grid">
           {items.length === 0 ? (
-            <p className="cart-empty">No products were found with name</p>
+            <p className="cart-empty">No products were found with that name</p>
           ) : (
             items.map((item) => <ItemsCard key={item.id} item={item} />)
           )}

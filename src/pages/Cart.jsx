@@ -2,6 +2,7 @@ import "../css/Cart.css";
 import { useItemContext } from "../contexts/CartContext";
 import CartItems from "../components/itemsincart";
 import ProceedToCheckout from "../components/checkout";
+
 function Cart() {
   const { cartContains } = useItemContext();
 

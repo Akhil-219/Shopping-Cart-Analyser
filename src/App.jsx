@@ -4,9 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import Cart from "./pages/Cart.jsx";
 import NavBar from "./components/Navbar.jsx";
 import { ItemProvider } from "./contexts/CartContext.jsx";
+import { BudgetProvider } from "./contexts/BudgetContext.jsx";
 
 function App() {
   return (
+    <BudgetProvider>
     <ItemProvider>
       <div>
         <NavBar />
@@ -18,6 +20,7 @@ function App() {
         </main>
       </div>
     </ItemProvider>
+    </BudgetProvider>
   );
 }
 
